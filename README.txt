@@ -1,0 +1,8 @@
+Ana Angélica Tamburus	4176647
+Luiz Fernando de Moura	6792965	
+
+	Inicialmente são declaradas as listas char *listarg[NARG] (lista de argumentos) e char *listpath[NDIR] (lista de diretórios no PATH). Estas listas será inicializadas através da função initList(char **list, int tam) que inicializa ou limpa a lista, preenchendo-a com NULL.
+	Antes da captura da linha de comando digitada pelo usuário foi utilizada a função getPath(char **envp, char *path)que captura as variáveis de caminho do sistema na variável path, em seguida, a função armazenaPath(char *path, char **listpath) que armazena cada variável do sistema (contidas em path) em uma linha da matriz listpath. 
+	A Shell desenvolvida utiliza a função scanf, com um argumento particular "%[^\n]" para capturar o texto digitado pelo usuário no terminal até encontrar o \n.  Este texto é a linha de comando que será armazenada em um vetor comando de tamanho 400,número este determinado suficiente para captura.
+	O vetor comando será analisado: se o usuário digitar exit, a shell será interrompida, caso contrario a função armazenaArg(char *comando, char **listarg) será solicitada. Esta função armazena o comando digitado separando os argumentos em linhas da matriz listarg. Logo após, se o programa existir, um processo filho será criado para executar o comando. A verificação de existencia do programa é feita através da função procuraProg(char *arg, char *nomeProg, char **listpath) que tiliza o comando fopen para verificar se o programa existe ou não,retornando 1 (e o caminho do comando em arg) caso exista ou 0 (e não altera o arg) caso contrário. A criação do processo filho é feita através de execProg(char *arg, char **listarg).
+
